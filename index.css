@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #5f3dc4;
+}
+
+.container {
+    max-width: 1000px;
+    height: 90vh;
+    margin: auto;
+    margin-top: 2.5rem;
+    
+    
+}
+
+.gameTitle {
+    text-align: center;
+    font-size: 2.5rem;
+}
+.user {
+    max-width: 250px;
+    padding: 0 10px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.user > .avartar {
+    margin-right: 1.5rem;
+    font-size: 3rem;
+}
+
+.userInfo > p {
+    line-height: 1.2;
+}
+
+.userPoint {
+    font-size: 0.8rem;
+}
