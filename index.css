@@ -8,21 +8,23 @@ body {
 }
 
 .container {
-    max-width: 1000px;
+    width: 100%;
     height: 90vh;
-    margin: auto;
+    margin: 0 auto;
+    padding: 0 20px;
     margin-top: 2.5rem;
-    
     
 }
 
 .gameTitle {
     text-align: center;
+    margin-bottom: 1rem;
     font-size: 2.5rem;
 }
 .user {
     max-width: 250px;
     padding: 0 10px;
+    margin: 0 auto;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -41,4 +43,65 @@ body {
 
 .userPoint {
     font-size: 0.8rem;
+}
+
+.gameBoard {
+    width: 460px;
+    margin: 0 auto;
+    margin-top: 30px;
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(4, 100px);
+    row-gap: 20px;
+    column-gap: 20px;
+}
+.cards {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    
+}
+
+.front, .back {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border-radius:10px;
+}
+
+.front {
+    background-color: #e5dbff;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    transition: all .5s ease-in-out;
+    backface-visibility: hidden;
+}
+
+.front.active {
+    transform: rotateY(180deg);
+}
+
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #e5dbff;
+    transform-style: preserve-3d;
+    transform: rotateY(-180deg);
+    transition: all 0.5s ease-in-out;
+    backface-visibility: hidden;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.back.active {
+    transform: rotateY(0deg);
+    z-index: 10;
 }
