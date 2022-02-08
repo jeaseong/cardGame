@@ -68,10 +68,12 @@ let card = [
 ];
 let turn = 0;
 let total = 0;
+let score = 0;
 
 const swap = (a, b) => {
   [card[a], card[b]] = [card[b], card[a]];
 };
+
 const suffleCard = () => {
   for (let i = 0; i < 100; i++) {
     let a = Math.floor(Math.random() * card.length);
@@ -109,6 +111,17 @@ const flipCard = (index) => {
   });
 };
 
+const init = () => {
+  for (let i = 0; i < card.length; i++) {
+    flipCard(i);
+  }
+  turn = 0;
+  total = 0;
+  score = 0;
+
+  suffleCard();
+};
+
 const checkCards = (arr) => {
   return card[arr[0]].cardImg === card[arr[1]].cardImg ? true : false;
 };
@@ -118,6 +131,7 @@ const selectCard = () => {
 
   let rememberCard = [];
   [...selectedCard].forEach((item, index) => {
+    const userScore = document.querySelector(".userPoint");
     item.addEventListener("click", () => {
       flipCard(index).then(() => {
         setTimeout(() => {
@@ -125,17 +139,20 @@ const selectCard = () => {
             turn = 1;
           } else if (turn === 1) {
             if (checkCards(rememberCard)) {
-              //score 올리기
+              score++;
             } else {
-              total++;
-              const score = document.querySelector(".userPoint");
-              score.innerText = `${total} turn`;
               for (const item of rememberCard) {
                 flipCard(item);
               }
             }
+            total++;
+            userScore.innerText = `${total} turn`;
             rememberCard = [];
             turn = 0;
+          }
+          if (score === 8) {
+            userScore.innerText = `0 turn`;
+            init();
           }
         }, 400);
       });
@@ -149,6 +166,7 @@ const gameStart = () => {
   suffleCard();
   makeGameBoard();
   selectCard();
+
   console.log(card);
 };
 
